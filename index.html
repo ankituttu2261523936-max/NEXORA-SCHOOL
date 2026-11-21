@@ -1,0 +1,180 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXORA PUBLIC SCHOOL</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">NEXORA</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="academics.html">Academics</a>
+    <a href="about.html">About</a>
+    <a href="facilities.html">Facilities</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="tag">WELCOME TO NEXORA PUBLIC SCHOOL</p>
+    <h1>Building Bright Futures Together</h1>
+    <p>Where Knowledge Meets Excellence.</p>
+    <a href="contact.html" class="btn">Explore Admissions</a>
+  </div>
+</section>
+
+<section class="home-options">
+  <h2>Explore Our School</h2>
+  <p class="option-subtitle">
+    Discover our academics, school environment and facilities.
+  </p>
+
+  <div class="option-grid">
+
+    <a href="academics.html" class="option-card">
+      <div class="option-icon">📚</div>
+      <h3>Academics</h3>
+      <p>Explore our educational programmes, classes and learning approach.</p>
+      <span>Explore More →</span>
+    </a>
+
+    <a href="about.html" class="option-card">
+      <div class="option-icon">🏫</div>
+      <h3>About School</h3>
+      <p>Discover our school's vision, mission and educational values.</p>
+      <span>Explore More →</span>
+    </a>
+
+    <a href="facilities.html" class="option-card">
+      <div class="option-icon">⭐</div>
+      <h3>Facilities</h3>
+      <p>Discover learning spaces, activities and available school facilities.</p>
+      <span>Explore More →</span>
+    </a>
+
+    <a href="contact.html" class="option-card">
+      <div class="option-icon">📞</div>
+      <h3>Contact Us</h3>
+      <p>Find school contact details and information about admissions.</p>
+      <span>Explore More →</span>
+    </a>
+
+  </div>
+</section>
+
+<section class="admission">
+  <h2>Admissions Open 2027–28</h2>
+  <p>Give Your Child a Bright and Successful Future.</p>
+  <a href="contact.html" class="btn">Enquire Now</a>
+</section>
+
+<footer>
+  <h3>NEXORA PUBLIC SCHOOL</h3>
+  <p>Where Every Dream Begins and Every Future Shines.</p>
+  <p>© 2026 NEXORA PUBLIC SCHOOL</p>
+
+  <a href="admin.html" style="color:#eab64b; display:inline-block; margin-top:15px;">
+    Admin Dashboard
+  </a>
+</footer>
+
+<script>
+window.onload = function() {
+  const info = JSON.parse(localStorage.getItem("schoolInfo") || "{}");
+
+  if (info.name) {
+    document.querySelector("header .logo").textContent = info.name;
+    document.querySelector("footer h3").textContent = info.name;
+  }
+
+  if (info.phone || info.address) {
+    const section = document.createElement("section");
+    section.className = "admission";
+
+    const heading = document.createElement("h2");
+    heading.textContent = "School Contact Details";
+
+    const phone = document.createElement("p");
+    phone.textContent = "Phone: " + (info.phone || "Not updated");
+
+    const address = document.createElement("p");
+    address.textContent = "Address: " + (info.address || "Not updated");
+
+    section.append(heading, phone, address);
+    document.querySelector("footer").before(section);
+  }
+
+  const admission = localStorage.getItem("admissionStatus");
+
+  if (admission) {
+    document.querySelector(".admission h2").textContent =
+      admission + " 2027–28";
+  }
+
+  const notice = localStorage.getItem("schoolNotice");
+
+  if (notice) {
+    const section = document.createElement("section");
+    section.className = "admission";
+
+    const heading = document.createElement("h2");
+    heading.textContent = "School Notice";
+
+    const message = document.createElement("p");
+    message.textContent = notice;
+
+    section.append(heading, message);
+    document.querySelector("footer").before(section);
+  }
+};
+</script>
+
+</body>
+</html>
+
+0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

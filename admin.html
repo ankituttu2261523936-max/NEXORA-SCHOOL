@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Admin Dashboard</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+body {
+  background: #f1f5f9;
+  font-family: Arial, sans-serif;
+}
+
+.admin-header {
+  background: #10284a;
+  color: white;
+  padding: 25px 7%;
+}
+
+.admin-header h1 {
+  font-size: 27px;
+}
+
+.admin-container {
+  max-width: 900px;
+  margin: 35px auto;
+  padding: 20px;
+}
+
+.admin-card {
+  background: white;
+  padding: 25px;
+  margin-bottom: 22px;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.06);
+}
+
+.admin-card h2 {
+  color: #10284a;
+  margin-bottom: 18px;
+}
+
+.admin-card input,
+.admin-card textarea,
+.admin-card select {
+  width: 100%;
+  padding: 13px;
+  margin: 9px 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.admin-card button {
+  background: #10284a;
+  color: white;
+  border: none;
+  padding: 13px 22px;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.status {
+  color: #b17b13;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header class="admin-header">
+  <h1>NEXORA ADMIN PANEL</h1>
+  <p>School Website Management Demo</p>
+</header>
+
+<main class="admin-container">
+
+  <section class="admin-card">
+    <h2>School Information</h2>
+
+    <input id="schoolName" placeholder="School Name">
+    <input id="phone" placeholder="Phone Number">
+    <input id="address" placeholder="School Address">
+
+    <button onclick="saveInfo()">Save Information</button>
+  </section>
+
+  <section class="admin-card">
+    <h2>Manage School Notice</h2>
+
+    <textarea id="notice" rows="4"
+    placeholder="Write a school notice"></textarea>
+
+    <button onclick="saveNotice()">Publish Notice</button>
+    <p id="noticeStatus" class="status"></p>
+  </section>
+
+  <section class="admin-card">
+    <h2>Admission Status</h2>
+
+    <select id="admission">
+      <option value="Admissions Open">Admissions Open</option>
+      <option value="Admissions Closed">Admissions Closed</option>
+    </select>
+
+    <button onclick="saveAdmission()">Update Status</button>
+    <p id="admissionStatus" class="status"></p>
+  </section>
+
+</main>
+
+<script>
+function saveInfo() {
+  const info = {
+    name: document.getElementById("schoolName").value,
+    phone: document.getElementById("phone").value,
+    address: document.getElementById("address").value
+  };
+
+  localStorage.setItem("schoolInfo", JSON.stringify(info));
+  alert("School information saved!");
+}
+
+function saveNotice() {
+  const notice = document.getElementById("notice").value.trim();
+
+  if (!notice) {
+    alert("Please enter a notice first.");
+    return;
+  }
+
+  localStorage.setItem("schoolNotice", notice);
+  document.getElementById("noticeStatus").textContent = "Notice saved!";
+}
+
+function saveAdmission() {
+  const status = document.getElementById("admission").value;
+
+  localStorage.setItem("admissionStatus", status);
+  document.getElementById("admissionStatus").textContent =
+    "Status saved: " + status;
+}
+
+window.onload = function() {
+  const info = JSON.parse(localStorage.getItem("schoolInfo") || "{}");
+
+  document.getElementById("schoolName").value = info.name || "";
+  document.getElementById("phone").value = info.phone || "";
+  document.getElementById("address").value = info.address || "";
+  document.getElementById("notice").value =
+    localStorage.getItem("schoolNotice") || "";
+
+  document.getElementById("admission").value =
+    localStorage.getItem("admissionStatus") || "Admissions Open";
+};
+</script>
+
+</body>
+</html>
+
+0
